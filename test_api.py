@@ -33,3 +33,13 @@ def test_delete_task(client):
     response = client.delete("/tasks/1")
     assert response.status_code == 200
     assert response.json["message"] == "Task deleted"
+
+def test_task_not_found(client):
+    """Testa a tentativa de atualizar ou excluir uma task que não existe."""
+    response = client.put("/tasks/999", json={"task": "Tarefa inexistente"})
+    assert response.status_code == 404
+    assert response.json["error"] == "Task not found"
+
+    response = client.delete("/tasks/999")
+    assert response.status_code == 404
+    assert response.json["error"] == "Task not found"
