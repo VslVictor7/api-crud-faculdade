@@ -16,7 +16,7 @@ def add_task():
     data = request.get_json()
     task = {"id": len(tasks) + 1, "task": data["task"]}
     tasks.append(task)
-    return jsonify(task), 201
+    return jsonify({"message": "Task created"}), 201
 
 @app.route("/tasks/<int:task_id>", methods=["PUT"])
 def update_task(task_id):
