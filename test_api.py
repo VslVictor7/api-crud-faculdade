@@ -12,7 +12,7 @@ def test_add_task(client):
     """Testa a adição de uma nova task."""
     response = client.post("/tasks", json={"task": "Nova tarefa"})
     assert response.status_code == 201
-    assert response.json["task"] == "Nova tarefa"
+    assert response.json["message"] == "Task created"
 
 def test_get_tasks(client):
     """Testa se a listagem de tasks retorna corretamente."""
